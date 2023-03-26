@@ -1,9 +1,16 @@
 // src/server.ts
 
 import express from 'express'
+import { adminJs, adminJsRouter } from './adminjs'
 import { database } from './database'
 
 const app = express()
+
+//Indicando arquivos estaticos
+app.use(express.static('public'))
+
+//app.use(caminho, rotas)
+app.use(adminJs.options.rootPath, adminJsRouter)
 
 const PORT = process.env.port || 3000
 
