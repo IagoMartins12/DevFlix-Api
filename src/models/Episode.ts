@@ -19,7 +19,7 @@ export interface EpisodeCreationAttributes
 export interface EpisodeInstance
   extends Model<Episode, EpisodeCreationAttributes>, Episode {}
 
-export const Episode = database.define<EpisodeInstance, Episode>('episodes', {
+export const Episode = database.define<EpisodeInstance, Episode>('Episode', {
   id: {
     allowNull: false,
     autoIncrement: true,
