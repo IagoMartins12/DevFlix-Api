@@ -1,4 +1,5 @@
 import { Category } from "../models"
+//Logica dos controladores de categorias 
 
 export const categoryService = {
     findAllPaginated: async ( page: number, perPage: number ) => {
