@@ -3,22 +3,27 @@ import { authController } from "./controllers/authController"
 import { categoriesController } from "./controllers/categorieController"
 import { coursesController } from "./controllers/coursesController"
 import { episodesController } from "./controllers/episodesController"
+import { ensureAuth, ensureAuthViaQuery } from "./middlewares/auth"
 
 const router = express.Router()
 
 //auth endpoints
 router.post('/auth/register', authController.register)
+router.post('/auth/login', authController.login)
+
 
 //categories endpoints
-router.get('/categories', categoriesController.index)
-router.get('/categories/:id', categoriesController.show)
+router.get('/categories', ensureAuth, categoriesController.index)
+router.get('/categories/:id', ensureAuth, categoriesController.show)
 
 //courses endpoints
-router.get('/courses/featured', coursesController.featured)
+router.get('/courses/featured', ensureAuth, coursesController.featured)
 router.get('/courses/newest', coursesController.newest)
-router.get('/courses/search', coursesController.search)
-router.get('/courses/:id', coursesController.show)
+router.get('/courses/search', ensureAuth, coursesController.search)
+router.get('/courses/:id', ensureAuth, coursesController.show)
 
 //episodes endpoints 
-router.get('/episodes/stream', episodesController.stream)
+router.get('/episodes/stream', ensureAuthViaQuery, episodesController.stream)
+
+
 export { router }
