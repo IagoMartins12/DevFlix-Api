@@ -47,7 +47,10 @@ export const Episode = database.define<EpisodeInstance, Episode>('Episode', {
   courseId: {
     allowNull: false,
     type: DataTypes.INTEGER,
-    references: { model: 'courses', key: 'id' },
+    references: { 
+      model: 'courses', 
+      key: 'id' 
+    },
     onUpdate: 'CASCADE',
     onDelete: 'RESTRICT'
   }
