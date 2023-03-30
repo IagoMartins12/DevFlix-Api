@@ -1,31 +1,9 @@
+import { filterLastEpisodesByCourse } from "../helpers/filterLastEpisodesByCourse"
 import { User } from "../models"
-import { EpisodeInstance } from "../models/Episode"
 import { UserCreationAttributes } from "../models/User"
 
-function filterLastEpisodesByCourse(episodes: EpisodeInstance[]) {
-  const coursesOnList: number[] = []
-
-  const lastEpisodes = episodes.reduce((currentList, episode) => {
-    if (!coursesOnList.includes(episode.courseId)) {
-      coursesOnList.push(episode.courseId)
-      currentList.push(episode)
-      return currentList
-    }
-
-    const episodeFromSameCourse = currentList.find(ep => ep.courseId === episode.courseId)
-
-    if (episodeFromSameCourse!.order > episode.order) return currentList
-
-    const listWithoutEpisodeFromSameCourse = currentList.filter(ep => ep.courseId !== episode.courseId)
-    listWithoutEpisodeFromSameCourse.push(episode)
-
-    return listWithoutEpisodeFromSameCourse
-  }, [] as EpisodeInstance[])
-
-  return lastEpisodes
-}
-
 export const userService = {
+    //Metodo para achar um usuario com base no email 
     findByEmail : async (email: string ) => {
         const user = await User.findOne({
             where: {
@@ -35,12 +13,39 @@ export const userService = {
         return user
     },
 
+    //Metodo para criar um usuario
     create: async (attributes: UserCreationAttributes) => {
         const user = await User.create(attributes)
 
         return user
     }, 
 
+    update: async (id: number, attributes: {
+      firstName: string 
+      lastName: string
+      phone: string
+      birth: Date
+      email: string
+    }) => {
+      const [affectedRows, updatedUsers] = await User.update(attributes, { 
+        where: { id }, 
+        returning: true})
+
+      return updatedUsers[0]
+    },
+
+    //Metodo para atualizar a senha 
+    updatePassword: async ( id: number, password: string) => {
+      const [affectedRows, updatedUsers] = await User.update({ password }, 
+        { where: { id }, 
+        returning: true,
+        individualHooks: true //Usado para rodar o hook feito no model 
+      })
+
+      return updatedUsers[0]
+    },
+
+    //Metodo para verificar se o usuario possui um episodio que não foi concluido
     getKeepWatchingList: async (id: number) => {
         const userWithWatchingEpisodes = await User.findByPk(id, {
           include: {
@@ -80,5 +85,6 @@ export const userService = {
         // @ts-ignore
         keepWatchingList.sort((a, b) => a.watchTime.updatedAt < b.watchTime.updatedAt ? 1 : -1)
         return keepWatchingList
-    }
+    }, 
+    
 }

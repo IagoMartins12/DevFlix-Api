@@ -10,6 +10,7 @@ export interface AuthenticatedRequest extends Request {
   user?: UserInstance | null
 }
 
+//Função de autenticação de rotas
 export function ensureAuth(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   const authorizationHeader = req.headers.authorization
 
@@ -30,6 +31,7 @@ export function ensureAuth(req: AuthenticatedRequest, res: Response, next: NextF
   })
 }
 
+//Função de autenticação de rotas via query (usado nas rotas de stream)
 export function ensureAuthViaQuery(req: AuthenticatedRequest, res: Response, next: NextFunction) {
     const { token } = req.query
 

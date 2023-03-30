@@ -7,14 +7,12 @@ import { favoriteController } from "./controllers/favoriteController"
 import { likesController } from "./controllers/likeController"
 import { usersController } from "./controllers/userController"
 import { ensureAuth, ensureAuthViaQuery } from "./middlewares/auth"
-import { userService } from "./services/userService"
 
 const router = express.Router()
 
 //auth endpoints
 router.post('/auth/register', authController.register)
 router.post('/auth/login', authController.login)
-
 
 //categories endpoints
 router.get('/categories', ensureAuth, categoriesController.index)
@@ -41,5 +39,10 @@ router.delete('/favorites/:id', ensureAuth, favoriteController.delete)
 router.post('/likes', ensureAuth, likesController.save)
 router.delete('/likes/:id', ensureAuth, likesController.delete)
 
+//users endpoints
 router.get('/users/current/watching', ensureAuth, usersController.watching)
+router.put('/users/current', ensureAuth, usersController.update)
+router.put('/users/current/password', ensureAuth, usersController.updatePassword)
+router.get('/users/current', ensureAuth, usersController.show)
+
 export { router }

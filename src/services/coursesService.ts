@@ -3,6 +3,8 @@ import { Course } from "../models"
 
 //Logica dos controladores de cursos 
 export const courseService = { 
+    
+    //Metodo para capturar um curso especifico e os episodios dele
     findByIdWithEpisodes: async (id: string ) => {
         const courseWithEpisodes = await Course.findByPk( id, {
             attributes : ['id', 'name', 'synopsis', ['thumbnail_url', 'thumbnailUrl']],
@@ -18,6 +20,7 @@ export const courseService = {
         return courseWithEpisodes
     }, 
 
+    //Metodo para capturar os cursos em destaques(sempre vem aleatorio)
     getRandomFeaturedCourses: async( ) => {
         const featuredCourses = await Course.findAll({
             attributes: ['id','name', 'synopsis', ['thumbnail_url', 'thumbnailUrl']],
@@ -31,6 +34,7 @@ export const courseService = {
         return randomFeaturedCourses.slice(0, 3)
     },
 
+    //Metodo para capturar os 10 primeiros cursos
     getTopTenNewest: async () => {
         const courses = Course.findAll({
             limit: 10,
@@ -41,6 +45,7 @@ export const courseService = {
 
     }, 
 
+    //Metodo para pesquisa de cursos 
     findByName: async( name: string, page: number, perPage: number ) => {
         const offset = ( page - 1) * perPage
         const { count, rows } = await Course.findAndCountAll({
@@ -62,6 +67,7 @@ export const courseService = {
         }
     },
 
+    //Metodo para capturar os 10 cursos mais populares
     getTopTenByLikes: async () => {
         const results = await Course.sequelize?.query(
           `SELECT
@@ -86,5 +92,5 @@ export const courseService = {
         } else {
           return null
         }
-      },
+    },
 }

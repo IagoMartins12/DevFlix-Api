@@ -33,6 +33,7 @@ export const authController = {
       }
     }
   },
+  
   //POST /auth/login
   login: async (req: Request, res: Response) => {
       const { email, password } = req.body

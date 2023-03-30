@@ -5,6 +5,7 @@ import { WatchTime } from "../models";
 import { WatchTimeAttributes } from "../models/WatchTime";
 
 export const episodeService = {
+    //Metodo para steam dos episodios
     streamEpisodeToResponse: async ( res: Response, videoUrl: string, range: string | undefined) => {
         const filePath = path.join(__dirname, "..", "..", "uploads", videoUrl)
         const fileStat = fs.statSync(filePath)
@@ -42,7 +43,8 @@ export const episodeService = {
             fs.createReadStream(filePath).pipe(res)
         }
     },
-    
+
+    //Metodo para recuperar em que momento o episodio parou
     getWatchTime: async (userId: number, episodeId: number) => {
         const watchTime = await WatchTime.findOne({
             attributes: ['seconds'],
@@ -55,6 +57,7 @@ export const episodeService = {
         return watchTime
     },
 
+    //Metodo para salvar os segundos do episodio
     setWatchTime: async ({ userId, episodeId, seconds }: WatchTimeAttributes) => {
         const watchTimeAlreadyExists = await WatchTime.findOne({
             where: {
