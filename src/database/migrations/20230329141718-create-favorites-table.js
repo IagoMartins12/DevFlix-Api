@@ -1,7 +1,6 @@
-// src/database/migration/XXXXXXXXXXXXXX-create-favorites-table.js
-
 'use strict';
 
+//Migration dos favoritos
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('favorites', {

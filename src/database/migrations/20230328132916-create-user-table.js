@@ -1,7 +1,6 @@
-// src/database/migrations/XXXXXXXXXXXXXX-create-users-table
-
 'use strict';
 
+//Migration dos users
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('users', {

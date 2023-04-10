@@ -1,7 +1,6 @@
-// src/database/migrations/XXXXXXXXXXXXXX-create-categories-table
-
 'use strict';
 
+//Migration das categorias
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('categories', {

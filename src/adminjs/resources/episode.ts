@@ -12,6 +12,7 @@ export const episodeResourceOptions: ResourceOptions = {
   showProperties: ['id', 'name', 'synopsis', 'courseId', 'order', 'videoUrl', 'secondsLong', 'createdAt', 'updatedAt']
 }
 
+//Configurando onde os episodios serão armazenados 
 export const episodeResourceFeatures : FeatureType[] = [
   uploadFileFeature({
     provider: {

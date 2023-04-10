@@ -1,5 +1,6 @@
 import { BrandingOptions } from "adminjs";
 
+//Estilização do adminJs
 export const brandingOptions : BrandingOptions = {
     companyName: 'DevFlix',
     logo: '/logoSemBackground2.png',

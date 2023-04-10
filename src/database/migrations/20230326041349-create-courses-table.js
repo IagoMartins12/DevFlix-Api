@@ -1,5 +1,6 @@
 'use strict';
 
+//Migration dos cursos
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('courses', {

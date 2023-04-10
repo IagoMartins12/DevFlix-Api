@@ -12,6 +12,7 @@ export const courseResourceOptions: ResourceOptions = {
     showProperties: ['id', 'name', 'synopsis', 'featured', 'thumbnailUrl', 'categoryId', 'createdAt', 'updatedAt']
 }
 
+//Configuração de onde que os cursos irão ser armazenados 
 export const courseResourceFeatures: FeatureType[] = [
     uploadFileFeature ({
         provider: {

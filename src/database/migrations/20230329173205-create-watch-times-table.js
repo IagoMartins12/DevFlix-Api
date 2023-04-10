@@ -1,7 +1,6 @@
-// src/database/migrations/XXXXXXXXXXXXXX-create-watch-times-table
-
 'use strict';
 
+//Migration do streaming
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('watch_times', {

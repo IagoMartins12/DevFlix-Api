@@ -1,9 +1,6 @@
-// src/adminjs/locale.ts
-
 import { Locale } from 'adminjs'
 
 //Objeto de tradução do adminJs
-
 export const locale: Locale = {
   language: 'pt-BR',
   translations: {

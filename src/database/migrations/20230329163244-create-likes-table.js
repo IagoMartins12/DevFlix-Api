@@ -1,7 +1,6 @@
-// src/database/migrations/XXXXXXXXXXXXXX-create-likes-table
-
 'use strict';
 
+//Migration dos likes
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('likes', {

@@ -1,12 +1,9 @@
 // Configuração do adminJs
-
 import AdminJs from 'adminjs'
 import AdminJsExpress from '@adminjs/express'
 import AdminJsSequelize from '@adminjs/sequelize'
 import { database } from '../database'
 import { adminJsResources } from './resources'
-import { Category, Course, Episode, User } from '../models'
-import bcrypt from 'bcrypt'
 import { locale } from './locale'
 import { dashboardOptions } from './dashboard'
 import { brandingOptions } from './branding'

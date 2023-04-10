@@ -1,7 +1,6 @@
-// src/database/migrations/XXXXXXXXXXXXXX-create-episodes-table.js
-
 'use strict';
 
+//Migration dos episodios
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('episodes', {

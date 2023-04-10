@@ -1,5 +1,3 @@
-// src/controllers/authController.ts
-
 import { Request, Response } from 'express'
 import { jwtService } from '../services/jwtService'
 import { userService } from '../services/userService'
